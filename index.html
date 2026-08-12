@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emraan Hashmi Era — 2000s, Forever.</title>
+  <meta name="description" content="A nostalgic interactive tribute to the Emraan Hashmi era — rain, late-night Bollywood, CDs, heartbreak and unforgettable music." />
+  <style>
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#090708}body{position:fixed;inset:0;font-family:"Space Grotesk",sans-serif}.bg-video{position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;object-position:center;z-index:0;background:#090708;filter:saturate(.82) contrast(1.05) brightness(.62);transform:scale(1.01)}.bg-overlay{position:fixed;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(8,6,7,.18),rgba(8,6,7,.04) 45%,rgba(8,6,7,.58) 100%)}.grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");mix-blend-mode:screen}.yt{position:fixed;width:1px;height:1px;left:-100px;bottom:-100px;opacity:0;pointer-events:none}.player{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);width:min(920px,calc(100% - 28px));z-index:10;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:12px 15px 12px 16px;border:1px solid rgba(255,238,209,.2);border-radius:17px;background:rgba(24,18,18,.62);backdrop-filter:blur(24px) saturate(1.15);-webkit-backdrop-filter:blur(24px) saturate(1.15);box-shadow:0 20px 60px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.07)}.disc{width:44px;height:44px;flex-shrink:0;border-radius:50%;background:repeating-radial-gradient(circle,#151112 0 3px,#3a2b27 4px 5px);display:grid;place-items:center;animation:spin 5s linear infinite;animation-play-state:paused;box-shadow:0 0 0 4px rgba(255,255,255,.04),0 4px 20px rgba(0,0,0,.4)}.disc.playing{animation-play-state:running}.disc:after{content:"";width:10px;height:10px;border-radius:50%;background:#c7a66f;border:3px solid #292020}@keyframes spin{to{transform:rotate(360deg)}}.track-info{min-width:0;overflow:hidden}.track-title{color:#f0e2c8;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.track-sub{margin-top:4px;color:rgba(229,215,191,.58);font:9px "DM Mono",monospace;letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.controls{display:flex;align-items:center;gap:5px}button{width:36px;height:36px;padding:0;border:0;border-radius:50%;background:transparent;color:#eadcc3;cursor:pointer;font-size:12px;transition:background .2s,transform .2s}button:hover{background:rgba(255,255,255,.09);transform:scale(1.05)}#play{width:43px;height:43px;background:#eadcc3;color:#241b1a;font-size:15px}#play:hover{background:#fff1d4}.progress-wrap{position:absolute;left:17px;right:17px;bottom:5px;height:2px;overflow:hidden;border-radius:5px;background:rgba(255,255,255,.1)}.progress{width:0;height:100%;background:#c59a58;transition:width .4s linear}@media(max-width:600px){.player{bottom:12px;width:calc(100% - 18px);grid-template-columns:auto 1fr auto;gap:10px;padding:10px 11px 11px 12px}.controls button:not(#play){display:none}.track-title{font-size:12px}.track-sub{font-size:8px}}
+</style>
+</head>
+<body>
+  <video class="bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true"><source src="assets/background.mp4" type="video/mp4"></video>
+  <div class="bg-overlay"></div><div class="grain"></div>
+  <div id="ytplayer" class="yt"></div>
+  <div class="player" aria-label="Music player">
+    <div class="disc" id="disc"></div>
+    <div class="track-info"><div class="track-title" id="trackTitle">EMRAAN HASHMI ERA</div><div class="track-sub" id="trackSub">PLAYLIST · 2000s BOLLYWOOD</div></div>
+    <div class="controls"><button id="prev" aria-label="Previous">◀◀</button><button id="play" aria-label="Play">▶</button><button id="next" aria-label="Next">▶▶</button></div>
+    <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+  </div>
+  <script>
+    const PLAYLIST_ID="PLujiMJ2lrmpApijmxx2JY1lP582H63KNg"; let player,ready=false,isPlaying=false;
+    function loadYT(){const tag=document.createElement("script");tag.src="https://www.youtube.com/iframe_api";document.head.appendChild(tag)}
+    window.onYouTubeIframeAPIReady=function(){player=new YT.Player("ytplayer",{height:"1",width:"1",playerVars:{listType:"playlist",list:PLAYLIST_ID,autoplay:0,controls:0,rel:0,modestbranding:1,playsinline:1},events:{onReady:()=>{ready=true;updateTrack()},onStateChange:onStateChange}})};
+    function onStateChange(e){const Y=window.YT;if(!Y)return;if(e.data===Y.PlayerState.PLAYING){isPlaying=true;play.textContent="Ⅱ";disc.classList.add("playing")}else if(e.data===Y.PlayerState.PAUSED||e.data===Y.PlayerState.ENDED){isPlaying=false;play.textContent="▶";disc.classList.remove("playing")}if(e.data===Y.PlayerState.PLAYING||e.data===Y.PlayerState.PAUSED)updateTrack()}
+    function updateTrack(){if(!ready||!player)return;try{const d=player.getVideoData();trackTitle.textContent=d&&d.title?d.title:"EMRAAN HASHMI ERA";trackSub.textContent="2000s BOLLYWOOD · PLAYLIST"}catch(e){}}
+    play.addEventListener("click",()=>{if(!ready)return;isPlaying?player.pauseVideo():player.playVideo()});
+    prev.addEventListener("click",()=>{if(ready){player.previousVideo();setTimeout(updateTrack,500)}});
+    next.addEventListener("click",()=>{if(ready){player.nextVideo();setTimeout(updateTrack,500)}});
+    setInterval(()=>{if(!ready||!player||!isPlaying)return;try{const d=player.getDuration(),c=player.getCurrentTime();if(d)progress.style.width=(c/d*100)+"%"}catch(e){}},700); loadYT();
+  </script>
+</body>
+</html>
